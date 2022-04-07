@@ -25,13 +25,13 @@
 
 //GET
 
-//to get all books ✅
-//to get specific books ✅
-//to get list of books based on category ✅
-//to get a list of books based on author -> {taskkkkkkkk}🔥
+//to get all books ✅📌
+//to get specific books ✅📌
+//to get list of books based on category ✅📌
+//to get a list of books based on author -> {taskkkkkkkk}🔥📕
 
 //POST
-//New Book ✅
+//New Book ✅📌
 
 //PUT
 //Update book details ✅
@@ -46,12 +46,12 @@
 //Author
 //GET
 //we need an api
-//to get all author✅
-//to get specific author -> {taskkkkkkkk}🔥
+//to get all author✅📌
+//to get specific author -> {taskkkkkkkk}🔥📕
 //to get a list of authors based on a book ✅
 
 //POST
-//New Author ✅
+//New Author ✅📌
 
 //PUT
 //Author Details using id {taskkkkkkkk}🔥
@@ -65,13 +65,13 @@
 
 //GET
 //we need an api
-//to get all publications✅
-//to get specific publications ->{taskkkkkkkk}🔥
-//to get a list of publications based on a book ->{taskkkkkkkk}🔥
+//to get all publications✅📕
+//to get specific publications ->{taskkkkkkkk}🔥📕
+//to get a list of publications based on a book ->{taskkkkkkkk}🔥📕
 
 
 //POST
-//Add new publications {taskkkkkkkk}🔥
+//Add new publications {taskkkkkkkk}🔥📕
 
 //PUT
 //Upate publication details using id {taskkkkkkkk}🔥

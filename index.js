@@ -9,9 +9,9 @@ const mongoose = require('mongoose');
 const database = require("./database/index");
 
 //Models
-const BookModels = require("./database/book");
-const AuthorModels = require("./database/author");
-const PublicationModels = require("./database/publication");
+const BookModel = require("./database/book");
+const AuthorModel = require("./database/author");
+const PublicationModel = require("./database/publication");
 
 //Initialize express
 const Bookish = express();
@@ -34,9 +34,10 @@ Parameters                  none
 Method                      GET
 */
 
-Bookish.get("/", (req, res) => {
+Bookish.get("/", async (req, res) => {
     //changes
-    return res.json({books : database.books});
+    const getAllBooks = await BookModel.find();
+    return res.json({books : getAllBooks});
 });
 
 
@@ -47,10 +48,12 @@ Access                      Public
 Parameters                  isbn
 Method                      GET
 */
-Bookish.get("/is/:isbn", (req, res) => {
-    const getSpecificBook = database.books.filter((book) => book.ISBN === req.params.isbn);
+Bookish.get("/is/:isbn", async(req, res) => {
 
-    if(getSpecificBook.length === 0){
+    const getSpecificBook = await BookModel.findOne({ISBN : req.params.isbn});
+    //const getSpecificBook = database.books.filter((book) => book.ISBN === req.params.isbn);
+
+    if(!getSpecificBook){
         return res.json({
             error : `No book found for this ISBN of ${req.params.isbn}`,
         })
@@ -68,10 +71,12 @@ Access                      Public
 Parameters                  category
 Method                      GET
 */
-Bookish.get("/c/:category",(req,res)=>{
-    const getSpecificBooks = database.books.filter((book) => book.category.includes(req.params.category));
+Bookish.get("/c/:category",async (req,res) => {
 
-    if(getSpecificBooks.length === 0){
+    const getSpecificBooks = await BookModel.findOne({category : req.params.category});
+   // const getSpecificBooks = database.books.filter((book) => book.category.includes(req.params.category));
+
+    if(!getSpecificBooks){
         return res.json({
             error : `No book found for the category of ${req.params.category}`,
         })
@@ -91,9 +96,11 @@ Method                      GET
 */
 
 
-Bookish.get("/author", (req, res) => {
+Bookish.get("/author", async(req, res) => {
     //changes
-    return res.json({authors : database.authors});
+
+    const getAllAuthors = await AuthorModel.find();
+    return res.json({authors : getAllAuthors});
 });
 
 
@@ -144,13 +151,14 @@ Parameters                  none
 Method                      post
 */
 
-Bookish.post("/book/new",(req,res) => {
+Bookish.post("/book/new",async(req,res) => {
     //body
     const {newBook} = req.body;
 
-    database.books.push(newBook);
+   // database.books.push(newBook);
+   const addNewBook = BookModel.create(newBook);
 
-    return res.json({books : database.books, message : "book was added!"});
+    return res.json({books : addNewBook, message : "book was added!"});
 });
 
 
@@ -161,13 +169,15 @@ Access                      Public
 Parameters                  none
 Method                      post
 */
-Bookish.post("/author/new",(req,res) => {
+Bookish.post("/author/new",async(req,res) => {
     //body
     const {newAuthor} = req.body;
 
-    database.authors.push(newAuthor);
+    //database.authors.push(newAuthor);
 
-    return res.json({authors : database.authors, message : "Author was added!"});
+    const addNewAuthor = AuthorModel.create(newAuthor);
+
+    return res.json({ message : "Author was added!"});
 });
 
 
