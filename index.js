@@ -1,6 +1,9 @@
+require("dotenv").config();
 
 //Framework
 const express = require("express");
+const mongoose = require('mongoose');
+
 
 //database
 const database = require("./database/index");
@@ -11,6 +14,12 @@ const Bookish = express();
 
 //Configurations
 Bookish.use(express.json());
+
+//Establish database connections
+mongoose.connect(process.env.MONGO_URL)
+.then(()=>console.log("connection established!"));
+
+
 
 /*
 Route                       /
@@ -332,3 +341,11 @@ Bookish.delete("/publication/delete/book/:isbn/:pubId",(req,res)=>{
 
 
 Bookish.listen(3000,()=> console.log("Server running!!😎"));
+
+
+//talk to mongodb so that mongodb understands => *******
+//talk to us so that we understand => JavaScript
+
+
+//mongoose
+
