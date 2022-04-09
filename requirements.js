@@ -39,7 +39,7 @@
 
 //DELETE
 //delete a book✅📌
-//delete an author from book✅
+//delete an author from book✅📌
 
 //----------------------------------------------------------------
 
