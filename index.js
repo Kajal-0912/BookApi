@@ -185,23 +185,25 @@ Bookish.post("/author/new",async(req,res) => {
 
 //PUT
 /*
-Route                       /book/update/:title
+Route                       /book/update
 Description                 update title of book
 Access                      Public
 Parameters                  isbn
 Method                      put
 */
 
-Bookish.put("/book/update/:isbn",(req,res) => {
-    //map or forEach 
-    database.books.forEach((book)=>{
-        if(book.ISBN === req.params.isbn){
-            book.title = req.body.bookTitle;
-            return;
-        }
-    });
+Bookish.put("/book/update/:isbn",async(req,res) => {
 
-    return res.json({books : database.books});
+    const updatedBook = await BookModel.findOneAndUpdate({ISBN : req.params.isbn,}, {title : req.body.bookTitle,},{new: true,});
+    //map or forEach 
+   // database.books.forEach((book)=>{
+    //    if(book.ISBN === req.params.isbn){
+   //         book.title = req.body.bookTitle;
+    //        return;
+    //    }
+   // });
+
+    return res.json({books : updatedBook});
 });
 
 /*

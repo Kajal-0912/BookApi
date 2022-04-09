@@ -34,7 +34,7 @@
 //New Book ✅📌
 
 //PUT
-//Update book details ✅
+//Update book details ✅📌
 //Update/add new author✅
 
 //DELETE
